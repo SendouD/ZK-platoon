@@ -52,7 +52,7 @@ export default function Terminal({
     const proofSubmit = (vehicle: string) => {
         setProofInput({
             vehicles: ['A', 'B', 'C', 'D', 'E', 'F'],
-            Vehicle_Response: [
+            Vehicle_Response:[
                 ['0', 'B'],
                 ['A', 'C'],
                 ['B', 'F'],
@@ -139,9 +139,15 @@ export default function Terminal({
             case 'about':
                 return 'Browser CLI v1.0.0 - A terminal emulator for the web';
             case 'swap':
+                  if (!start) {
+                    return 'Simulation need to be started';
+                }
                 setSwap(true);
                 return 'Nodes are swapped' 
             case 'prove':
+                  if (!start) {
+                    return 'Simulation need to be started';
+                }
                 console.log(args);
                 if (args.length !==1) {
                     return 'Error: Missing argument. Usage: prove <vehicle_name>';

@@ -1,10 +1,10 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import TruckChart from "./TruckSimulation.jsx";
-import Terminal from "./Terminal.jsx";
-import ConnectWallet from "./wallet/connectWallet.jsx";
-import JwtAuth from "../jwtAuth.jsx";
-import { Vortex } from "../ui/Vortex.jsx";
+'use client';
+import React, { useEffect, useState } from 'react';
+import TruckChart from './TruckSimulation.jsx';
+import Terminal from './Terminal.jsx';
+import ConnectWallet from './wallet/connectWallet.jsx';
+import JwtAuth from '../jwtAuth.jsx';
+import { Vortex } from '../ui/Vortex.jsx';
 
 const Home = () => {
   const [start, setStart] = useState(false);
@@ -12,7 +12,8 @@ const Home = () => {
   const [count, setCount] = useState(0);
   const [landing, setLanding] = useState(true);
   const [authStatus, setAuthStatus] = useState(false);
-  const [swap,setSwap] = useState(false);
+  const [swap, setSwap] = useState(false);
+  console.log(JSON.parse(sessionStorage.getItem('neighbours')!));
   useEffect(() => {
     if (start) {
       setLanding(false);
@@ -44,20 +45,18 @@ const Home = () => {
             start={start}
             count={count}
             setCount={setCount}
-                        setSwap={setSwap}
-                            swap={swap}
+            setSwap={setSwap}
+            swap={swap}
             faulty={faulty}
             setfaulty={setfaulty}
           />
         </div>
       )}
-
       {authStatus && (
         <div className="w-10/12">
           <Terminal
-                        
-                        setSwap={setSwap}
-                            swap={swap}
+            setSwap={setSwap}
+            swap={swap}
             setStart={setStart}
             setfaulty={setfaulty}
             count={count}
@@ -77,7 +76,7 @@ const Landing = () => {
     <div className="w-full h-screen flex justify-center items-center bg-white">
       <div className="relative w-5/6 h-5/6 border border-gray-200 ">
         <Vortex containerClassName="absolute inset-0" className="rounded-xl" />
-        
+
         <div className="flex flex-col justify-center items-center text-white z-10 absolute inset-0 ">
           <p className="font-bold">Welcome to</p>
           <p className="text-4xl font-bold ">ZK-Platoon</p>
