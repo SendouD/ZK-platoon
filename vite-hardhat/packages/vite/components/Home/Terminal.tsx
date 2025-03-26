@@ -18,9 +18,9 @@ export default function Terminal({
     swap,
     setSwap
 }: {
-        
-    setSwap :(val:boolean)=>void;
-    swap:boolean;
+
+    setSwap: (val: boolean) => void;
+    swap: boolean;
     count: number;
     setStart: (val: boolean) => void;
     setfaulty: (val: boolean) => void;
@@ -48,18 +48,39 @@ export default function Terminal({
     const { noir, proofData, backend } = useProofGeneration(proofInput);
     useOffChainVerification(backend!, noir!, proofData!);
     useOnChainVerification(proofData);
-
+    let vehicle_Response;
+    if (count == 0) {
+        vehicle_Response = [
+            ['0', 'B'],
+            ['A', 'C'],
+            ['B', 'D'],
+            ['C', 'E'],
+            ['D', 'F'],
+            ['E', '1'],
+        ]
+    } else if(count == 1){
+        vehicle_Response = [
+            ['0', 'B'],
+            ['A', 'C'],
+            ['B', 'E'],
+            ['C', 'E'],
+            ['C', 'F'],
+            ['E', '1'],
+        ]
+    }else {
+        vehicle_Response = [
+            ['0', 'B'],
+            ['A', 'C'],
+            ['B', 'F'],
+            ['C', 'E'],
+            ['D', 'F'],
+            ['C', '1'],
+        ]
+    }
     const proofSubmit = (vehicle: string) => {
         setProofInput({
             vehicles: ['A', 'B', 'C', 'D', 'E', 'F'],
-            Vehicle_Response:[
-                ['0', 'B'],
-                ['A', 'C'],
-                ['B', 'F'],
-                ['C', 'E'],
-                ['D', 'F'],
-                ['C', '1'],
-            ],
+            Vehicle_Response:vehicle_Response,
             vehicle_name: vehicle,
         });
     };
@@ -139,17 +160,17 @@ export default function Terminal({
             case 'about':
                 return 'Browser CLI v1.0.0 - A terminal emulator for the web';
             case 'swap':
-                  if (!start) {
+                if (!start) {
                     return 'Simulation need to be started';
                 }
                 setSwap(true);
-                return 'Nodes are swapped' 
+                return 'Nodes are swapped'
             case 'prove':
-                  if (!start) {
+                if (!start) {
                     return 'Simulation need to be started';
                 }
                 console.log(args);
-                if (args.length !==1) {
+                if (args.length !== 1) {
                     return 'Error: Missing argument. Usage: prove <vehicle_name>';
                 }
                 console.log('function triggered');
