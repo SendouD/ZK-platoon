@@ -24,7 +24,6 @@ export async function handletoken(token:string,EphemeralKey:EphemeralKey,nonce:s
     const keyId = headers.kid;
     const googleJWTPubkey = await fetchGooglePublicKey(keyId);
     console.log("googleJWTPubkey", googleJWTPubkey)
-    console.log(token)
     const proof = await JWT_CIRCUIT_HELPER.generateProof({
           idToken:token,
           jwtPubkey: googleJWTPubkey,

@@ -52,7 +52,7 @@ const Home = () => {
         </div>
       )}
 
-      {authStatus && (
+      { (
         <div className="w-10/12">
           <Terminal
                         

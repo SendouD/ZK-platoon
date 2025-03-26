@@ -28,7 +28,7 @@ export function useProofGeneration(inputs?: Props) {
     const { witness } = await toast.promise(noir.execute(inputs), {
       pending: 'Generating witness...',
       success: 'Witness generated!',
-      error: 'Error generating witness',
+      error: 'Proof is Invalid',
     });
 
     const data = await toast.promise(backend.generateProof(witness), {
@@ -36,6 +36,8 @@ export function useProofGeneration(inputs?: Props) {
       success: 'Proof generated',
       error: 'Error generating proof',
     });
+
+    console.log(data);
 
     setProofData(data);
     setNoir(noir);

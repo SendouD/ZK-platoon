@@ -108,16 +108,29 @@ const TruckSimulation = ({
         if (!faulty || count === 2) return;
 
         const setRandomFaultyNode = () => {
-            while (true) {
-                const randomIndex = Math.floor(Math.random() * trucks.length);
-                if (!isFaulty[randomIndex]) {
-                    setFaultyNodes(prev => {
-                        const newFaulty = [...prev];
-                        newFaulty[randomIndex] = true;
-                        return newFaulty;
-                    });
-                    break;
-                }
+            // while (true) {
+            //     const randomIndex = Math.floor(Math.random() * trucks.length);
+            //     if (!isFaulty[randomIndex]) {
+            //         setFaultyNodes(prev => {
+            //             const newFaulty = [...prev];
+            //             newFaulty[randomIndex] = true;
+            //             return newFaulty;
+            //         });
+            //         break;
+            //     }
+            // }
+            if(count==0){
+                setFaultyNodes(prev => {
+                    const newFaulty = [...prev];
+                    newFaulty[3] = true;
+                    return newFaulty;
+                });
+            }else{
+                setFaultyNodes(prev => {
+                    const newFaulty = [...prev];
+                    newFaulty[4] = true;
+                    return newFaulty;
+                });
             }
             setfaulty(false);
             setCount(count + 1);
